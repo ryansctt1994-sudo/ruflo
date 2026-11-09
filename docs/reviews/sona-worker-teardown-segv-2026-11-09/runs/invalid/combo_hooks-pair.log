@@ -1,0 +1,248 @@
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+Loaded  vitest@4.1.8  and  @vitest/coverage-v8@4.1.9 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+      Coverage enabled with v8
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should initialize in in-memory mode when dependencies are not available
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should return V3 development context
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should only initialize once
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include HNSW performance targets
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store a new pattern
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include code quality rules
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include learned patterns count
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should update existing pattern if duplicate detected
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePromptContext > should detect security domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store multiple different patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePromptContext > should detect testing domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store patterns with metadata
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should return patterns sorted by similarity
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePromptContext > should include relevant learned patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should limit results to k
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block .env files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block .pem files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block credentials files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block secret files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block password files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > warning checks > should warn about production files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > warning checks > should warn about prod files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > warning checks > should warn about live files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide testing guidance for test files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide security guidance for auth files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide memory guidance for cache files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide swarm guidance for coordinator files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should accept Float32Array as query
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide TypeScript guidance for .ts files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > should allow normal files without specific guidance
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should detect console.log in non-test files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should update metrics on search
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should not flag console.log in test files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should detect TODO/FIXME comments
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should detect any type in TypeScript
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should warn about large files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should detect hardcoded secrets
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should generate guidance with domain detection
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePostEditFeedback > should allow clean files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > dangerous commands > should block rm -rf
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > dangerous commands > should block DROP DATABASE
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > dangerous commands > should block git reset --hard
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > dangerous commands > should block force push
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > risky commands > should warn about npm publish
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > risky commands > should warn about git push
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > risky commands > should warn about kubectl apply
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > helpful commands > should provide guidance for test commands
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > helpful commands > should provide guidance for vitest
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > helpful commands > should provide guidance for build commands
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > helpful commands > should provide guidance for tsc
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreCommandGuidance > should allow safe commands
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateRoutingGuidance > should recommend security-architect for security tasks
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateRoutingGuidance > should recommend test-architect for testing tasks
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should detect security domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateRoutingGuidance > should include alternatives
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateRoutingGuidance > should include usage instructions
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateStopCheck > should allow stopping when patterns are consolidated
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateStopCheck > should block stopping when too many unconsolidated patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should detect testing domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should include agent suggestion
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should route security tasks to security-architect
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should route testing tasks to test-architect
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should route performance tasks to performance-engineer
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should provide alternatives
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should default to coder for general tasks
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > recordOutcome > should update pattern quality on success
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider with default ReasoningBank > should create provider without explicit ReasoningBank
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+ ✓ @claude-flow/hooks/src/__tests__/guidance-provider.test.ts (47 tests) 268131ms
+       ✓ should return V3 development context  319ms
+       ✓ should include learned patterns count  12686ms
+       ✓ should detect security domain  18949ms
+       ✓ should detect testing domain  20122ms
+       ✓ should include relevant learned patterns  20274ms
+         ✓ should provide testing guidance for test files  6820ms
+         ✓ should provide security guidance for auth files  6467ms
+         ✓ should provide memory guidance for cache files  6869ms
+         ✓ should provide swarm guidance for coordinator files  7451ms
+         ✓ should provide TypeScript guidance for .ts files  7319ms
+       ✓ should allow normal files without specific guidance  8120ms
+       ✓ should detect console.log in non-test files  7918ms
+       ✓ should not flag console.log in test files  7156ms
+       ✓ should detect TODO/FIXME comments  7269ms
+       ✓ should detect any type in TypeScript  6642ms
+       ✓ should warn about large files  6197ms
+       ✓ should detect hardcoded secrets  6412ms
+       ✓ should allow clean files  6481ms
+       ✓ should recommend security-architect for security tasks  6751ms
+       ✓ should recommend test-architect for testing tasks  6282ms
+       ✓ should include alternatives  6126ms
+       ✓ should include usage instructions  6290ms
+       ✓ should block stopping when too many unconsolidated patterns  79150ms
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Something removed the coverage directory "/home/user/ruflo/v3/__tests__/coverage/.tmp" Vitest created earlier. Make sure you are not running multiple Vitests with the same "coverage.reportsDirectory" at the same time.
+ ❯ V8CoverageProvider.normalizeCoverageFileError node_modules/.pnpm/vitest@4.1.8_@opentelemetry+api@1.9.1_@types+node@20.19.27_@vitest+coverage-v8@4.1.9_vite@7.3.0/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:729:128
+ ❯ node_modules/.pnpm/vitest@4.1.8_@opentelemetry+api@1.9.1_@types+node@20.19.27_@vitest+coverage-v8@4.1.9_vite@7.3.0/node_modules/vitest/dist/chunks/coverage.DM_a_rWm.js:745:15
+
+Caused by: Error: ENOENT: no such file or directory, open '/home/user/ruflo/v3/__tests__/coverage/.tmp/coverage-0.json'
+ ❯ open node:internal/fs/promises:639:25
+ ❯ Object.writeFile node:internal/fs/promises:1222:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -2, code: 'ENOENT', syscall: 'open', path: '/home/user/ruflo/v3/__tests__/coverage/.tmp/coverage-0.json' }
+
+
+

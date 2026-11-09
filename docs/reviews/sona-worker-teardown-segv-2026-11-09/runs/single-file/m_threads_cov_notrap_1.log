@@ -1,0 +1,11 @@
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+Loaded  vitest@4.1.8  and  @vitest/coverage-v8@4.1.9 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+      Coverage enabled with v8
+
+ ✓ @claude-flow/cli/__tests__/memory-ruvector-deep.test.ts (147 tests) 1358ms
+       ✓ always sets backend, and 'mock' implies the hash-fallback model  451ms
+Segmentation fault

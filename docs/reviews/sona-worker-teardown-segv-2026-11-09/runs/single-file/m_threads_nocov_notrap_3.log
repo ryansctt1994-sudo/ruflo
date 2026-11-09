@@ -1,0 +1,13 @@
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+
+ ✓ @claude-flow/cli/__tests__/memory-ruvector-deep.test.ts (147 tests) 1176ms
+       ✓ always sets backend, and 'mock' implies the hash-fallback model  394ms
+
+ Test Files  1 passed (1)
+      Tests  147 passed (147)
+   Start at  05:42:57
+   Duration  1.62s (transform 662ms, setup 58ms, import 217ms, tests 1.18s, environment 0ms)
+
+Segmentation fault

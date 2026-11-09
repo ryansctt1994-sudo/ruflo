@@ -1,0 +1,380 @@
+Error processing line 1 of /usr/lib/python3/dist-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 201, in addpackage
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+Catchpoint 1 (signal SIGSEGV)
+Breakpoint 2 at 0xe38490
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Detaching after fork from child process 3545]
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+Loaded  vitest@4.1.8  and  @vitest/coverage-v8@4.1.9 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+      Coverage enabled with v8
+
+ ❯ @claude-flow/cli/__tests__/helper-signing.test.ts (6 tests | 1 failed) 30ms
+     ✓ accepts a validly-signed manifest and returns the trusted map 4ms
+     ✓ REJECTS a manifest whose hash was tampered after signing 1ms
+     ✓ REJECTS a manifest signed by a DIFFERENT key (wrong provenance) 1ms
+     ✓ REJECTS a non-ed25519 algorithm and malformed input 1ms
+     ✓ exists and verifies against the baked ruflo public key 1ms
+     × its hashes match the actual shipped helper files (a byte flip would break the gate) 20ms
+ ❯ @claude-flow/cli/__tests__/agenticow-tools.test.ts (10 tests | 1 failed) 63ms
+     ✓ exposes 9 tools (lifecycle + read/write verbs) 4ms
+     × ingest → query round-trips vectors + text across a COW branch (issue: text persistence) 24ms
+     ✓ diff / lineage / status report branch state 12ms
+     ✓ new read/write verbs degrade + validate like the lifecycle verbs 2ms
+     ✓ every tool has a JSON-schema input + handler 1ms
+     ✓ agenticow_branch creates a tiny COW branch on a real base 3ms
+     ✓ agenticow_checkpoint persists state across reopen, agenticow_rollback restores it 7ms
+     ✓ agenticow_branch rejects path traversal in basePath 0ms
+     ✓ agenticow_branch rejects a malformed label 0ms
+     ✓ agenticow_branch requires dimension when creating a new memory file 0ms
+[Switching to Thread 0x7ff5be7fc6c0 (LWP 3555)]
+
+--- DLCLOSE ---
+No shared libraries matched.
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should initialize in in-memory mode when dependencies are not available
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should return V3 development context
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should only initialize once
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include HNSW performance targets
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store a new pattern
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include code quality rules
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3570]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include learned patterns count
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3576]
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should update existing pattern if duplicate detected
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3628]
+[Detaching after fork from child process 3639]
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store multiple different patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3671]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePromptContext > should detect security domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3682]
+[Detaching after fork from child process 3712]
+[Detaching after fork from child process 3723]
+[Detaching after fork from child process 3734]
+[Detaching after fork from child process 3745]
+stdout | @claude-flow/performance/__tests__/benchmarks.test.ts > quickValidation() > should run quick validation
+V3 Performance Target Validation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Target Range:    2.49x - 7.47x
+Actual Speedup:  1.10x
+Meets Minimum:   NO ✗
+Within Range:    YES ✓
+
+stdout | @claude-flow/performance/__tests__/benchmarks.test.ts > quickValidation() > should return true if meets targets
+V3 Performance Target Validation
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Target Range:    2.49x - 7.47x
+Actual Speedup:  0.99x
+Meets Minimum:   NO ✗
+Within Range:    YES ✓
+
+ ✓ @claude-flow/performance/__tests__/benchmarks.test.ts (52 tests) 32930ms
+       ✓ should validate against target (2.49x minimum)  371ms
+       ✓ should run comprehensive benchmark suite  1714ms
+       ✓ should test multiple dimensions  1555ms
+       ✓ should include summary statistics  1705ms
+       ✓ should calculate success rate  1777ms
+       ✓ should track targets met  1676ms
+       ✓ should include timestamp  1742ms
+       ✓ should run stress test successfully  2311ms
+       ✓ should test increasing loads  2250ms
+       ✓ should maintain same dimension  2210ms
+       ✓ should handle high key counts  2449ms
+       ✓ should not throw on stress conditions  2344ms
+       ✓ should validate V3 performance targets  350ms
+       ✓ should check minimum target (2.49x)  363ms
+       ✓ should check maximum target (7.47x)  317ms
+       ✓ should return valid speedup value  333ms
+       ✓ should use 512 dimension for validation  400ms
+       ✓ should show checkmark for met targets  339ms
+       ✓ should format suite as report  1766ms
+       ✓ should include all benchmarks  1703ms
+       ✓ should show summary statistics  1628ms
+     ✓ should run quick validation  342ms
+     ✓ should return true if meets targets  635ms
+     ✓ should show improved performance with Flash Attention  381ms
+     ✓ should validate across all test dimensions  1641ms
+[Switching to Thread 0x7ff5bd3f66c0 (LWP 3565)]
+
+--- DLCLOSE ---
+No shared libraries matched.
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store patterns with metadata
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3777]
+[Detaching after fork from child process 3788]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePromptContext > should detect testing domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3839]
+[Detaching after fork from child process 3850]
+ ✓ @claude-flow/plugins/__tests__/ruvector-streaming.test.ts (26 tests) 13148ms
+       ✓ should stream large result sets  624ms
+       ✓ should respect batch size during streaming  477ms
+       ✓ should include vectors when requested  525ms
+       ✓ should allow filtering with transform stream  502ms
+       ✓ should support enrichment transforms  420ms
+       ✓ should handle backpressure from slow consumers  893ms
+       ✓ should not overwhelm memory with large result sets  618ms
+       ✓ should pause and resume based on consumer speed  584ms
+       ✓ should stream batch inserts  410ms
+       ✓ should handle partial final batch  414ms
+       ✓ should respect insert throughput  473ms
+       ✓ should transform vectors before insert  432ms
+       ✓ should handle insert errors gracefully  506ms
+       ✓ should create and iterate cursor  596ms
+       ✓ should support cursor with small batch size  450ms
+       ✓ should close cursor properly  411ms
+       ✓ should track cursor position  352ms
+       ✓ should compose multiple transforms  450ms
+       ✓ should handle errors in pipeline  403ms
+       ✓ should support async generators  351ms
+       ✓ should process large datasets with constant memory  755ms
+       ✓ should release references after streaming  582ms
+       ✓ should handle empty result stream  422ms
+       ✓ should handle single result  400ms
+       ✓ should handle stream destruction  437ms
+       ✓ should handle concurrent stream consumption  651ms
+ ❯ @claude-flow/cli/__tests__/self-learning-2245.test.ts (9 tests | 9 skipped) 13ms
+     ↓ recordSignalProcessed increments the dead-zero counter
+     ↓ memory-bridge calls increment signalsProcessed via the wired hook
+     ↓ hooks_task-completed returns recorded-only when trainPatterns is omitted
+     ↓ hooks_task-completed with trainPatterns:true increments trajectoriesRecorded
+     ↓ pretrain stores per-pattern rows so neural_patterns list sees them
+     ↓ pretrain return surfaces both patternsBundled AND patternsIndexed honestly
+     ↓ a batch of mixed-verdict completions all reach the trajectory pipeline
+     ↓ persistence survives a stats flush + reload (no more reset-on-restart for patternsLearned)
+     ↓ multi-step trajectory pipeline (start → step → end) produces a learned SONA pattern
+[Detaching after fork from child process 3867]
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should return patterns sorted by similarity
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3878]
+[Detaching after fork from child process 3933]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePromptContext > should include relevant learned patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 3944]
+ ✓ @claude-flow/performance/__tests__/attention.test.ts (42 tests) 8153ms
+       ✓ should run benchmark successfully  353ms
+       ✓ should measure Flash Attention performance  372ms
+       ✓ should measure baseline performance  387ms
+       ✓ should calculate speedup correctly  345ms
+       ✓ should validate against V3 minimum target (2.49x)  402ms
+       ✓ should update peak speedup metric  370ms
+       ✓ should track successful operations  380ms
+       ✓ should return average speedup after benchmark  388ms
+       ✓ should calculate average across multiple benchmarks  830ms
+       ✓ should track success rate  488ms
+       ✓ should track peak speedup  399ms
+       ✓ should allow new metrics after reset  392ms
+     ✓ should run quick benchmark with default dimension  462ms
+     ✓ should run quick benchmark with custom dimension  379ms
+     ✓ should return valid benchmark result structure  437ms
+     ✓ should complete in reasonable time  304ms
+     ✓ should demonstrate speedup improvement  520ms
+     ✓ should track operations per second  454ms
+     ✓ should validate V3 performance targets  451ms
+[Switching to Thread 0x7ff5be3fb6c0 (LWP 3862)]
+
+--- DLCLOSE ---
+No shared libraries matched.
+[Detaching after fork from child process 3959]
+[Detaching after fork from child process 3970]
+ ✓ @claude-flow/security/__tests__/password-hasher.test.ts (32 tests) 6626ms
+       ✓ should hash password with bcrypt  423ms
+       ✓ should produce different hashes for same password  784ms
+       ✓ should include rounds in hash  384ms
+       ✓ should verify correct password  767ms
+       ✓ should reject incorrect password  770ms
+       ✓ should return false for empty password  401ms
+       ✓ should not need rehash for current rounds  426ms
+       ✓ should NOT use hardcoded salt  1330ms
+       ✓ should NOT produce same hash for same input (unlike SHA-256)  893ms
+       ✓ should produce hash that takes time to compute  432ms
+[Detaching after fork from child process 4251]
+[Detaching after fork from child process 4262]
+ ✓ @claude-flow/swarm/__tests__/topology.test.ts (46 tests) 6133ms
+       ✓ should emit topology.rebalanced event  6104ms
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should limit results to k
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 4277]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block .env files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block .pem files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block credentials files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block secret files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > security checks > should block password files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > warning checks > should warn about production files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > warning checks > should warn about prod files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > warning checks > should warn about live files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide testing guidance for test files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 4288]
+ ✓ @claude-flow/swarm/__tests__/consensus.test.ts (37 tests) 5806ms
+       ✓ should achieve consensus with 2f+1 votes  5010ms
+ ✓ @claude-flow/cli/__tests__/pretrain-from-github.test.ts (7 tests) 956ms
+[Switching to Thread 0x7ff5be3fb6c0 (LWP 4299)]
+
+--- DLCLOSE ---
+No shared libraries matched.
+
+--- DLCLOSE ---
+No shared libraries matched.
+
+--- DLCLOSE ---
+No shared libraries matched.
+
+--- DLCLOSE ---
+No shared libraries matched.
+
+--- DLCLOSE ---
+No shared libraries matched.
+
+--- DLCLOSE ---
+No shared libraries matched.
+
+--- DLCLOSE ---
+No shared libraries matched.
+[Detaching after fork from child process 4317]
+[Detaching after fork from child process 4337]
+[Detaching after fork from child process 4357]
+[Detaching after fork from child process 4377]
+[Detaching after fork from child process 4397]
+[Detaching after fork from child process 4417]
+[Detaching after fork from child process 4440]
+ ✓ @claude-flow/cli/__tests__/memory-search-recall-2558.test.ts (4 tests) 4548ms
+     ✓ list shows all stored entries (CRUD path is unaffected)  602ms
+     ✓ recalls EVERY stored entry by a shared keyword (the core regression)  710ms
+     ✓ discriminates by a unique keyword (recall is targeted, not a blanket dump)  688ms
+[Detaching after fork from child process 4462]
+[Detaching after fork from child process 4473]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide security guidance for auth files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 4498]
+ ✓ @claude-flow/cli/__tests__/integration-docker.test.ts (95 tests) 3435ms
+     ✓ npm run build succeeds  3398ms
+ ❯ @claude-flow/cli/__tests__/round-b-wiring-2245.test.ts (3 tests | 3 skipped) 8ms
+     ↓ hooks_post-edit bumps globalStats.trajectoriesRecorded
+     ↓ hooks_post-command bumps globalStats.trajectoriesRecorded
+     ↓ reports globalStatsTrajectoriesDelta in the response
+[Detaching after fork from child process 4511]
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide memory guidance for cache files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 4539]
+ ✓ @claude-flow/plugins/__tests__/ruvector-quantization.test.ts (28 tests) 7929ms
+       ✓ should train product quantizer codebook  715ms
+       ✓ should encode vectors with PQ  776ms
+       ✓ should decode PQ codes back to approximate vector  818ms
+       ✓ should reduce memory significantly with PQ  769ms
+       ✓ should maintain recall with product quantization  2113ms
+ ❯ @claude-flow/cli/__tests__/unified-stats-2245.test.ts (7 tests | 7 skipped) 8ms
+     ↓ returns all four sub-views with their source paths
+     ↓ recordSignalProcessed → global.signalsProcessed up
+     ↓ storeNeuralPatterns → neuralPatterns.patternCount up
+     ↓ hooks_task-completed {trainPatterns:true} → global.trajectoriesRecorded up
+     ↓ reports memory-bridge unreachable explicitly when it is
+     ↓ flags the "patternsLearned > 0 but neural store empty" pattern when it occurs
+     ↓ hooks_intelligence_unified-stats is registered and returns the unified shape
+[Detaching after fork from child process 4552]
+ ✓ @claude-flow/plugins/__tests__/ruvector-migrations.test.ts (42 tests) 2872ms
+       ✓ should handle rapid up/down cycles  304ms
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generatePreEditGuidance > file type guidance > should provide swarm guidance for coordinator files
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 4634]
+ ✓ @claude-flow/swarm/__tests__/coordinator.test.ts (21 tests) 2536ms
+       ✓ should report healthy status  2504ms
+ ✓ @claude-flow/security/__tests__/token-generator.test.ts (45 tests) 2228ms
+       ✓ should reject expired signed token  1101ms
+       ✓ should detect expired token  1101ms
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should accept Float32Array as query
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+[Detaching after fork from child process 4670]
+stderr | @claude-flow/cli/__tests__/sona-embeddings-validation.test.ts > Embeddings Transparency (vector-db) > 6: generateHashEmbedding via generateEmbedding returns Float32Array of length 384
+[vector-db] Using hash-based pseudo-embeddings (no semantic similarity). Install ruvector or @claude-flow/embeddings for real ML embeddings.
+
+[Switching to Thread 0x7ff58d9f76c0 (LWP 4669)]
+
+--- DLCLOSE ---
+From                To                  Syms Read   Shared Object Library
+0x00007ffff4f8bf60  0x00007ffff4ff4858  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/@ruvector+sona@0.1.7/node_modules/@ruvector/sona/index.linux-x64-gnu.node
+(*): Shared library is missing debugging information.
+ ✓ @claude-flow/cli/__tests__/sona-embeddings-validation.test.ts (10 tests) 567ms
+     ✓ 9: generateEmbedding function exists in neural-tools and is callable  301ms
+
+--- DLCLOSE ---
+From                To                  Syms Read   Shared Object Library
+0x00007ffff4f8bf60  0x00007ffff4ff4858  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/@ruvector+sona@0.1.7/node_modules/@ruvector/sona/index.linux-x64-gnu.node
+0x00007ffff4075280  0x00007ffff40dc993  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/@ruvector+sona@0.1.5/node_modules/@ruvector/sona/sona.linux-x64-gnu.node
+(*): Shared library is missing debugging information.
+
+--- DLCLOSE ---
+From                To                  Syms Read   Shared Object Library
+0x00007ffff4075280  0x00007ffff40dc993  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/@ruvector+sona@0.1.5/node_modules/@ruvector/sona/sona.linux-x64-gnu.node
+(*): Shared library is missing debugging information.
+
+--- SIGSEGV ---
+$1 = (void (*)()) 0x7ffff4fda450
+No symbol matches $pc.
+#0  0x00007ffff4fda450 in ?? ()
+#1  0x00007ffff7899420 in __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:73
+#2  __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:22
+
+--- SIGSEGV ---
+$2 = (void (*)()) 0x7ffff4fda450
+No symbol matches $pc.
+#0  0x00007ffff4fda450 in ?? ()
+#1  0x00007ffff7899420 in __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:73
+#2  __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:22
+/tmp/claude-0/-home-user/a507d37d-1007-5a9d-b60c-6787dca412b8/scratchpad/segv/gdb_full.cmds:24: Error in sourced command file:
+Couldn't get registers: No such process.

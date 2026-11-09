@@ -1,0 +1,32 @@
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+Loaded  vitest@4.1.8  and  @vitest/coverage-v8@4.1.9 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+      Coverage enabled with v8
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should return V3 development context
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should initialize in in-memory mode when dependencies are not available
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include HNSW performance targets
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should only initialize once
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include code quality rules
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store a new pattern
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/guidance-provider.test.ts > GuidanceProvider > generateSessionContext > should include learned patterns count
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+ ✓ @claude-flow/cli/__tests__/memory-ruvector-deep.test.ts (147 tests) 1400ms
+       ✓ always sets backend, and 'mock' implies the hash-fallback model  401ms
+Segmentation fault
