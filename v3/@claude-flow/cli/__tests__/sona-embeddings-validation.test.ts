@@ -99,8 +99,10 @@ describe('Neural Tools (neural-tools)', () => {
     // Must be a non-empty string indicating which embedding backend is active
     expect(typeof provider).toBe('string');
     expect(provider.length).toBeGreaterThan(0);
-    // Must match one of the known provider tiers or fallback
-    const knownProviders = /agentic-flow|onnx|mock|hash|fallback|reasoningbank|none/i;
+    // Must match one of the known provider tiers or fallback. ruvector and
+    // wasm-embedder are the tiers neural-tools.ts tries first; which one is
+    // active depends on what has loaded, so all of them must be accepted.
+    const knownProviders = /ruvector|wasm-embedder|agentic-flow|onnx|mock|hash|fallback|reasoningbank|none/i;
     expect(provider).toMatch(knownProviders);
   });
 });
