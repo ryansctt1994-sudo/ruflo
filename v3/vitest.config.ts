@@ -24,6 +24,7 @@ export const INCLUDE = [
 export const CHDIR_SUITES = [
   '@claude-flow/cli/__tests__/issue-2250-2251-regression.test.ts',
   '@claude-flow/cli/__tests__/neural-status-training-backend-2549.test.ts',
+  '@claude-flow/cli/__tests__/pretrain-from-github.test.ts',
   '@claude-flow/cli/__tests__/round-b-wiring-2245.test.ts',
   '@claude-flow/cli/__tests__/router-bandit.test.ts',
   '@claude-flow/cli/__tests__/self-learning-2245.test.ts',

@@ -14,18 +14,46 @@
 //   5. learningPath signal — recordTrajectory returns success without throwing,
 //      proving the trajectory pipeline (not just memory-bridge) ran.
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { existsSync, mkdtempSync, rmSync, statSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+// The memory bridge's stores are CWD-relative (agentdb's vector backends ignore
+// dbPath: agentdb.rvf when the RVF fallback runs in worker threads,
+// ruvector.db otherwise; plus .swarm/memory.db). This test must not write
+// them into the directory the suite was started from.
+const CWD_STORES = ['agentdb.rvf', 'ruvector.db', join('.swarm', 'memory.db')];
+const LAUNCH_CWD = process.cwd();
+function snapshotStores(): Record<string, string> {
+  return Object.fromEntries(CWD_STORES.map((rel) => {
+    const abs = join(LAUNCH_CWD, rel);
+    if (!existsSync(abs)) return [rel, 'absent'];
+    const st = statSync(abs);
+    return [rel, `${st.size}:${st.mtimeMs}`];
+  }));
+}
+const STORES_BEFORE = snapshotStores();
+
+// Run in a scratch CWD, as unified-stats-2245 does, so those stores land
+// there. chdir is forbidden in worker threads, so this file is listed in
+// CHDIR_SUITES (vitest.config.ts) and runs in the chdir-forks project. The
+// modules are imported only after the chdir.
+const SCRATCH = mkdtempSync(join(tmpdir(), 'pretrain-from-github-'));
+let recordTrajectory: typeof Intelligence.recordTrajectory;
+let getUnifiedLearningStats: typeof Intelligence.getUnifiedLearningStats;
+let flushIntelligenceStats: typeof Intelligence.flushIntelligenceStats;
+let storeNeuralPatterns: typeof NeuralTools.storeNeuralPatterns;
+let getNeuralStoreStats: typeof NeuralTools.getNeuralStoreStats;
+let neuralTools: typeof NeuralTools.neuralTools;
+
+afterAll(() => {
+  try { process.chdir(LAUNCH_CWD); } catch { /* */ }
+  try { rmSync(SCRATCH, { recursive: true, force: true }); } catch { /* */ }
+});
 import { distillAndSerialise } from '../src/memory/structured-distill.js';
-import {
-  recordTrajectory,
-  getUnifiedLearningStats,
-  flushIntelligenceStats,
-} from '../src/memory/intelligence.js';
-import {
-  storeNeuralPatterns,
-  getNeuralStoreStats,
-  neuralTools,
-} from '../src/mcp-tools/neural-tools.js';
+import type * as Intelligence from '../src/memory/intelligence.js';
+import type * as NeuralTools from '../src/mcp-tools/neural-tools.js';
 
 // Fixture — a tiny mock "history" shaped like real ruflo commits + issues.
 // Intentionally small so this stays fast. The shape (subject + body + verdict)
@@ -59,13 +87,18 @@ const FIXTURE = [
 ];
 
 describe('pretrain-from-github wiring guard (#2245 regression)', () => {
-  let before: Awaited<ReturnType<typeof getUnifiedLearningStats>>;
-  let afterStats: Awaited<ReturnType<typeof getUnifiedLearningStats>>;
-  let neuralBefore: Awaited<ReturnType<typeof getNeuralStoreStats>>;
-  let neuralAfter: Awaited<ReturnType<typeof getNeuralStoreStats>>;
+  let before: Awaited<ReturnType<typeof Intelligence.getUnifiedLearningStats>>;
+  let afterStats: Awaited<ReturnType<typeof Intelligence.getUnifiedLearningStats>>;
+  let neuralBefore: Awaited<ReturnType<typeof NeuralTools.getNeuralStoreStats>>;
+  let neuralAfter: Awaited<ReturnType<typeof NeuralTools.getNeuralStoreStats>>;
   let trainedCount = 0;
 
   beforeAll(async () => {
+    process.chdir(SCRATCH);
+    ({ recordTrajectory, getUnifiedLearningStats, flushIntelligenceStats } =
+      await import('../src/memory/intelligence.js'));
+    ({ storeNeuralPatterns, getNeuralStoreStats, neuralTools } =
+      await import('../src/mcp-tools/neural-tools.js'));
     before = await getUnifiedLearningStats();
     neuralBefore = await getNeuralStoreStats();
 
@@ -171,5 +204,10 @@ describe('pretrain-from-github wiring guard (#2245 regression)', () => {
     expect(Array.isArray(cosine.results)).toBe(true);
     // Cosine path does NOT include the hybrid breakdown.
     expect(cosine.results[0]).not.toHaveProperty('hybridScore');
+  });
+
+  // Runs last: every write above has happened by now.
+  it('does not write the memory stores into the launch directory', () => {
+    expect(snapshotStores()).toEqual(STORES_BEFORE);
   });
 });
