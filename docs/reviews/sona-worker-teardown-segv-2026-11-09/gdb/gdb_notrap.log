@@ -1,0 +1,236 @@
+Error processing line 1 of /usr/lib/python3/dist-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 201, in addpackage
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Detaching after fork from child process 2613]
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+
+ ✓ @claude-flow/cli/__tests__/memory-ruvector-deep.test.ts (147 tests) 1323ms
+       ✓ always sets backend, and 'mock' implies the hash-fallback model  393ms
+
+ Test Files  1 passed (1)
+      Tests  147 passed (147)
+   Start at  05:43:42
+   Duration  1.77s (transform 695ms, setup 59ms, import 216ms, tests 1.32s, environment 0ms)
+
+
+Thread 12 "node" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7ffbbe7fc6c0 (LWP 2623)]
+0x00007ffff4fda450 in ?? ()
+
+=== FAULT: info threads ===
+  Id   Target Id                                          Frame 
+  1    Thread 0x7ffff7e8bcc0 (LWP 2604) "node"            0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=128, cancel=true, abstime=0x0, op=265, expected=2623, futex_word=0x7ffbbe7fc990) at ./nptl/futex-internal.c:57
+  2    Thread 0x7ffff77ff6c0 (LWP 2607) "DelayedTaskSche" 0x00007ffff792a170 in __GI_epoll_pwait (epfd=epfd@entry=10, events=events@entry=0x7ffff77fbca0, maxevents=maxevents@entry=1024, timeout=timeout@entry=3434, set=set@entry=0x0) at ../sysdeps/unix/sysv/linux/epoll_pwait.c:40
+  3    Thread 0x7ffff6ffe6c0 (LWP 2608) "node"            0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=32763, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea4) at ./nptl/futex-internal.c:57
+  4    Thread 0x7ffff67fd6c0 (LWP 2609) "node"            0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea4) at ./nptl/futex-internal.c:57
+  5    Thread 0x7ffff5ffc6c0 (LWP 2610) "node"            0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=32763, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea0) at ./nptl/futex-internal.c:57
+  6    Thread 0x7ffff57fb6c0 (LWP 2611) "node"            0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea0) at ./nptl/futex-internal.c:57
+  7    Thread 0x7ffff7b5e6c0 (LWP 2612) "node"            0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=<optimized out>, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>) at ./nptl/futex-internal.c:57
+  8    Thread 0x7ffff4bff6c0 (LWP 2619) "libuv-worker"    0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3ec <cond+44>) at ./nptl/futex-internal.c:57
+  9    Thread 0x7ffbbffff6c0 (LWP 2620) "libuv-worker"    0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3e8 <cond+40>) at ./nptl/futex-internal.c:57
+  10   Thread 0x7ffbbf7fe6c0 (LWP 2621) "libuv-worker"    0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3ec <cond+44>) at ./nptl/futex-internal.c:57
+  11   Thread 0x7ffbbeffd6c0 (LWP 2622) "libuv-worker"    0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=1858187080, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3e8 <cond+40>) at ./nptl/futex-internal.c:57
+* 12   Thread 0x7ffbbe7fc6c0 (LWP 2623) "node"            0x00007ffff4fda450 in ?? ()
+
+=== FAULT: siginfo ===
+$1 = 11
+$2 = (void *) 0x7ffff4fda450
+
+=== FAULT: faulting thread bt full ===
+#0  0x00007ffff4fda450 in ?? ()
+No symbol table info available.
+#1  0x00007ffff7899420 in __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:73
+        data = <optimized out>
+        inner = <optimized out>
+        level2 = 0x7ffbbe7fc9d0
+        idx = <optimized out>
+        round = <optimized out>
+        cnt = 0
+        self = <optimized out>
+        just_free = <optimized out>
+        __value = <optimized out>
+#2  __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:22
+        self = <optimized out>
+        just_free = <optimized out>
+        round = <optimized out>
+        cnt = <optimized out>
+        idx = <optimized out>
+        level2 = <optimized out>
+        __value = <optimized out>
+        inner = <optimized out>
+        data = <optimized out>
+        __value = <optimized out>
+        level2 = <optimized out>
+        __value = <optimized out>
+#3  0x00007ffff789c970 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:455
+        pd = <optimized out>
+        out = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140719209563840, 5207848729820736681, 140719209563840, -496, 25, 140737488317328, 5207848729933982889, 5209940462314794153}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = <optimized out>
+#4  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+No locals.
+
+=== FAULT: all threads bt ===
+
+Thread 12 (Thread 0x7ffbbe7fc6c0 (LWP 2623) "node"):
+#0  0x00007ffff4fda450 in ?? ()
+#1  0x00007ffff7899420 in __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:73
+#2  __GI___nptl_deallocate_tsd () at ./nptl/nptl_deallocate_tsd.c:22
+#3  0x00007ffff789c970 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:455
+#4  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 11 (Thread 0x7ffbbeffd6c0 (LWP 2622) "libuv-worker"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=1858187080, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3e8 <cond+40>) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=1858187080, abstime=0x0, clockid=0, expected=0, futex_word=0x6b5c3e8 <cond+40>) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6b5c3e8 <cond+40>, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6b5c380 <mutex>, cond=0x6b5c3c0 <cond>) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ../deps/uv/src/unix/thread.c:835
+#6  0x0000000001d3609c in worker (arg=0x0) at ../deps/uv/src/threadpool.c:77
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 10 (Thread 0x7ffbbf7fe6c0 (LWP 2621) "libuv-worker"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3ec <cond+44>) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x6b5c3ec <cond+44>) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6b5c3ec <cond+44>, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6b5c380 <mutex>, cond=0x6b5c3c0 <cond>) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ../deps/uv/src/unix/thread.c:835
+#6  0x0000000001d3609c in worker (arg=0x0) at ../deps/uv/src/threadpool.c:77
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 9 (Thread 0x7ffbbffff6c0 (LWP 2620) "libuv-worker"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3e8 <cond+40>) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x6b5c3e8 <cond+40>) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6b5c3e8 <cond+40>, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6b5c380 <mutex>, cond=0x6b5c3c0 <cond>) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ../deps/uv/src/unix/thread.c:835
+#6  0x0000000001d3609c in worker (arg=0x0) at ../deps/uv/src/threadpool.c:77
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 8 (Thread 0x7ffff4bff6c0 (LWP 2619) "libuv-worker"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b5c3ec <cond+44>) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x6b5c3ec <cond+44>) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6b5c3ec <cond+44>, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6b5c380 <mutex>, cond=0x6b5c3c0 <cond>) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=cond@entry=0x6b5c3c0 <cond>, mutex=mutex@entry=0x6b5c380 <mutex>) at ../deps/uv/src/unix/thread.c:835
+#6  0x0000000001d3609c in worker (arg=0x0) at ../deps/uv/src/threadpool.c:77
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 7 (Thread 0x7ffff7b5e6c0 (LWP 2612) "node"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=<optimized out>, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=<optimized out>, abstime=0x0, clockid=0, expected=0, futex_word=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=<optimized out>) at ./nptl/futex-internal.c:139
+#3  0x00007ffff78a4fff in do_futex_wait (sem=sem@entry=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>, abstime=0x0, clockid=0) at ./nptl/sem_waitcommon.c:111
+#4  0x00007ffff78a5098 in __new_sem_wait_slow64 (sem=sem@entry=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>, abstime=0x0, clockid=0) at ./nptl/sem_waitcommon.c:183
+#5  0x00007ffff78a511d in __new_sem_wait (sem=sem@entry=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>) at ./nptl/sem_wait.c:42
+#6  0x0000000001d4a8da in uv__sem_wait (sem=<optimized out>) at ../deps/uv/src/unix/thread.c:660
+#7  uv_sem_wait (sem=0x6b48760 <node::inspector::(anonymous namespace)::start_io_thread_semaphore>) at ../deps/uv/src/unix/thread.c:716
+#8  0x000000000116e3b5 in node::inspector::(anonymous namespace)::StartIoThreadMain(void*) ()
+#9  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#10 0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 6 (Thread 0x7ffff57fb6c0 (LWP 2611) "node"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea0) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x6bfdea0) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6bfdea0, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6bfde50, cond=0x6bfde78) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x6bfde78, mutex=0x6bfde50) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=<optimized out>, mutex=<optimized out>) at ../deps/uv/src/unix/thread.c:835
+#6  0x000000000104a5cb in node::(anonymous namespace)::PlatformWorkerThread(void*) ()
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 5 (Thread 0x7ffff5ffc6c0 (LWP 2610) "node"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=32763, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea0) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=32763, abstime=0x0, clockid=0, expected=0, futex_word=0x6bfdea0) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6bfdea0, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6bfde50, cond=0x6bfde78) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x6bfde78, mutex=0x6bfde50) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=<optimized out>, mutex=<optimized out>) at ../deps/uv/src/unix/thread.c:835
+#6  0x000000000104a5cb in node::(anonymous namespace)::PlatformWorkerThread(void*) ()
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 4 (Thread 0x7ffff67fd6c0 (LWP 2609) "node"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea4) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x6bfdea4) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6bfdea4, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6bfde50, cond=0x6bfde78) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x6bfde78, mutex=0x6bfde50) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=<optimized out>, mutex=<optimized out>) at ../deps/uv/src/unix/thread.c:835
+#6  0x000000000104a5cb in node::(anonymous namespace)::PlatformWorkerThread(void*) ()
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 3 (Thread 0x7ffff6ffe6c0 (LWP 2608) "node"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=32763, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x6bfdea4) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=32763, abstime=0x0, clockid=0, expected=0, futex_word=0x6bfdea4) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x6bfdea4, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b8cd in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x6bfde50, cond=0x6bfde78) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x6bfde78, mutex=0x6bfde50) at ./nptl/pthread_cond_wait.c:627
+#5  0x0000000001d4aaa9 in uv_cond_wait (cond=<optimized out>, mutex=<optimized out>) at ../deps/uv/src/unix/thread.c:835
+#6  0x000000000104a5cb in node::(anonymous namespace)::PlatformWorkerThread(void*) ()
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#8  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 2 (Thread 0x7ffff77ff6c0 (LWP 2607) "DelayedTaskSche"):
+#0  0x00007ffff792a170 in __GI_epoll_pwait (epfd=epfd@entry=10, events=events@entry=0x7ffff77fbca0, maxevents=maxevents@entry=1024, timeout=timeout@entry=3434, set=set@entry=0x0) at ../sysdeps/unix/sysv/linux/epoll_pwait.c:40
+#1  0x0000000001d50cf2 in uv__io_poll (loop=loop@entry=0x6c32448, timeout=3434) at ../deps/uv/src/unix/linux.c:1465
+#2  0x0000000001d3aec7 in uv_run (loop=0x6c32448, mode=UV_RUN_DEFAULT) at ../deps/uv/src/unix/core.c:460
+#3  0x000000000104fafa in node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start()::{lambda(void*)#1}::_FUN(void*) ()
+#4  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#5  0x00007ffff7929ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 1 (Thread 0x7ffff7e8bcc0 (LWP 2604) "node"):
+#0  0x00007ffff7898e51 in __futex_abstimed_wait_common64 (private=128, cancel=true, abstime=0x0, op=265, expected=2623, futex_word=0x7ffbbe7fc990) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=128, abstime=0x0, clockid=0, expected=2623, futex_word=0x7ffbbe7fc990) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x7ffbbe7fc990, expected=2623, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=128) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789e883 in __pthread_clockjoin_ex (threadid=140719209563840, thread_return=thread_return@entry=0x0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, block=block@entry=true) at ./nptl/pthread_join_common.c:102
+#4  0x00007ffff789e723 in ___pthread_join (threadid=<optimized out>, thread_return=thread_return@entry=0x0) at ./nptl/pthread_join.c:24
+#5  0x0000000001d4a2de in uv_thread_join (tid=<optimized out>) at ../deps/uv/src/unix/thread.c:295
+#6  0x00000000010f4c90 in node::worker::Worker::JoinThread() ()
+#7  0x0000000000f12f78 in node::Environment::RunAndClearNativeImmediates(bool) ()
+#8  0x0000000000f13624 in node::Environment::InitializeLibuv()::{lambda(uv_async_s*)#1}::_FUN(uv_async_s*) ()
+#9  0x0000000001d3a163 in uv__async_io (loop=0x6b5c420 <default_loop_struct>, w=<optimized out>, events=<optimized out>) at ../deps/uv/src/unix/async.c:208
+#10 0x0000000001d50e04 in uv__io_poll (loop=loop@entry=0x6b5c420 <default_loop_struct>, timeout=<optimized out>) at ../deps/uv/src/unix/linux.c:1565
+#11 0x0000000001d3aec7 in uv_run (loop=0x6b5c420 <default_loop_struct>, mode=UV_RUN_DEFAULT) at ../deps/uv/src/unix/core.c:460
+#12 0x0000000000ea9736 in node::SpinEventLoopInternal(node::Environment*) ()
+#13 0x000000000100e771 in node::NodeMainInstance::Run() ()
+
+=== native .node libraries loaded ===
+From                To                  Syms Read   Shared Object Library
+0x00007ffff7fc6000  0x00007ffff7ff0195  Yes         /lib64/ld-linux-x86-64.so.2
+0x00007ffff7fac040  0x00007ffff7fac105  Yes         /lib/x86_64-linux-gnu/libdl.so.2
+0x00007ffff7ca55c0  0x00007ffff7de4ce2  Yes (*)     /lib/x86_64-linux-gnu/libstdc++.so.6
+0x00007ffff7ed2420  0x00007ffff7f503a6  Yes         /lib/x86_64-linux-gnu/libm.so.6
+0x00007ffff7e98780  0x00007ffff7ebb745  Yes (*)     /lib/x86_64-linux-gnu/libgcc_s.so.1
+0x00007ffff7e90040  0x00007ffff7e90105  Yes         /lib/x86_64-linux-gnu/libpthread.so.0
+0x00007ffff7828800  0x00007ffff79b0039  Yes         /lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff4c0f1e0  0x00007ffff4d97db1  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/@rollup+rollup-linux-x64-gnu@4.54.0/node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node
+0x00007ffff7b71080  0x00007ffff7b712b1  Yes         /lib/x86_64-linux-gnu/librt.so.1
+0x00007ffff7aa0f70  0x00007ffff7ac819e  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/onnxruntime-node@1.14.0/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/onnxruntime_binding.node
+0x00007ffbbd46a000  0x00007ffbbe0cb821  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/onnxruntime-node@1.14.0/node_modules/onnxruntime-node/bin/napi-v3/linux/x64/libonnxruntime.so.1.14.0
+0x00007ffff7a4f1c0  0x00007ffff7a81775  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/onnxruntime-node@1.24.3/node_modules/onnxruntime-node/bin/napi-v6/linux/x64/onnxruntime_binding.node
+0x00007ffa85ef3480  0x00007ffa879baad5  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/onnxruntime-node@1.24.3/node_modules/onnxruntime-node/bin/napi-v6/linux/x64/libonnxruntime.so.1
+(*): Shared library is missing debugging information.
+A debugging session is active.
+
+	Inferior 1 [process 2604] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]

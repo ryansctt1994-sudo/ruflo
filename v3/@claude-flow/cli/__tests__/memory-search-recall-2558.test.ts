@@ -42,6 +42,9 @@ let cwd = '';
 function cli(args: string[]): string {
   return execFileSync('node', [CLI, ...args], {
     cwd,
+    // Without the opt-out, each run auto-started a background daemon in the
+    // temp workspace that outlived afterAll's rmSync as an orphan process.
+    env: { ...process.env, RUFLO_DAEMON_AUTOSTART: '0' },
     encoding: 'utf8',
     timeout: 90_000,
     stdio: ['ignore', 'pipe', 'pipe'],

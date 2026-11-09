@@ -7,15 +7,25 @@
 
 import { describe, it, expect, vi, afterEach } from 'vitest';
 
+// vitest.config.ts sets mockReset: true, which wipes .mockReturnValue() and
+// .mockResolvedValue() before every test but restores an implementation
+// passed to vi.fn(impl). These helpers bake the value into the
+// implementation so module-level mocks survive the reset. As with
+// mockReturnValue, the value is evaluated once, so identity is preserved.
+const { returns, resolves } = vi.hoisted(() => ({
+  returns: <T>(value: T) => vi.fn(() => value),
+  resolves: <T>(value: T) => vi.fn(async () => value),
+}));
+
 // ── Mock fs and module for initAgentWasm ─────────────────────
 
 vi.mock('node:fs', () => ({
-  readFileSync: vi.fn().mockReturnValue(new Uint8Array([0])),
+  readFileSync: returns(new Uint8Array([0])),
 }));
 
 vi.mock('node:module', () => ({
-  createRequire: vi.fn().mockReturnValue({
-    resolve: vi.fn().mockReturnValue('/fake/rvagent_wasm_bg.wasm'),
+  createRequire: returns({
+    resolve: returns('/fake/rvagent_wasm_bg.wasm'),
   }),
 }));
 
@@ -31,14 +41,14 @@ class MockWasmAgent {
     const cfg = JSON.parse(configJson);
     this._model = cfg.model ?? 'default';
   }
-  prompt = vi.fn().mockResolvedValue('Hello from WASM agent');
+  prompt = resolves('Hello from WASM agent');
   set_model_provider = vi.fn();
   reset = vi.fn();
   free = vi.fn();
-  get_state = vi.fn().mockReturnValue({ messages: [], turn_count: 0, stopped: false });
-  get_todos = vi.fn().mockReturnValue([]);
-  get_tools = vi.fn().mockReturnValue(['read_file', 'write_file', 'edit_file', 'write_todos', 'list_files']);
-  execute_tool = vi.fn().mockResolvedValue(mockToolResult);
+  get_state = returns({ messages: [], turn_count: 0, stopped: false });
+  get_todos = returns([]);
+  get_tools = returns(['read_file', 'write_file', 'edit_file', 'write_todos', 'list_files']);
+  execute_tool = resolves(mockToolResult);
   model() { return this._model; }
   name() { return undefined; }
   turn_count() { return this._turnCount; }
@@ -61,16 +71,16 @@ const mockTemplateDetail = {
 };
 
 class MockWasmGallery {
-  list = vi.fn().mockReturnValue(mockTemplates);
-  get = vi.fn().mockImplementation((id: string) => id === 'coder' ? mockTemplateDetail : undefined);
-  search = vi.fn().mockReturnValue([{ ...mockTemplates[0], relevance: 0.7 }]);
-  count = vi.fn().mockReturnValue(2);
-  getCategories = vi.fn().mockReturnValue({ development: 1, testing: 1 });
+  list = returns(mockTemplates);
+  get = vi.fn((id: string) => id === 'coder' ? mockTemplateDetail : undefined);
+  search = returns([{ ...mockTemplates[0], relevance: 0.7 }]);
+  count = returns(2);
+  getCategories = returns({ development: 1, testing: 1 });
   free = vi.fn();
 }
 
 class MockWasmMcpServer {
-  handle_request = vi.fn().mockResolvedValue('{"jsonrpc":"2.0","id":1,"result":{}}');
+  handle_request = resolves('{"jsonrpc":"2.0","id":1,"result":{}}');
   free = vi.fn();
   constructor(_agent: any) {}
 }
@@ -88,12 +98,12 @@ class MockWasmRvfBuilder {
   addCapabilities = vi.fn();
   addMcpTools = vi.fn();
   setOrchestrator = vi.fn();
-  build = vi.fn().mockReturnValue(new Uint8Array([0x52, 0x56, 0x46, 0x01]));
+  build = returns(new Uint8Array([0x52, 0x56, 0x46, 0x01]));
   free = vi.fn();
 }
 
 vi.mock('@ruvector/rvagent-wasm', () => ({
-  default: vi.fn().mockResolvedValue(undefined),
+  default: resolves(undefined),
   initSync: vi.fn(),
   WasmAgent: MockWasmAgent,
   WasmGallery: MockWasmGallery,
@@ -130,14 +140,12 @@ import {
 
 // ── Tests ────────────────────────────────────────────────────
 
-// Skip in CI — the WASM init crashes during module load even with the
-// vi.mock above, because the mock replaces *some* of the loading path but
-// the real @ruvector/rvagent-wasm import still happens. Local runs where
-// the WASM binary is built work fine; CI without postinstall doesn't.
-// See ruvllm-wasm.test.ts for the same pattern.
-const __SKIP_WASM_TESTS = process.env.CI === 'true';
-
-describe.skipIf(__SKIP_WASM_TESTS)('agent-wasm integration', () => {
+// This suite used to be skipped in CI on the theory that the real @ruvector/rvagent-wasm
+// package still loaded and crashed without a built WASM binary. It does
+// not: every test here passes with @ruvector/rvagent-wasm removed from node_modules.
+// The failures came from mockReset wiping .mockReturnValue(); see the
+// returns/resolves helpers at the top of this file.
+describe('agent-wasm integration', () => {
   describe('detection and init', () => {
     it('detects module availability', async () => {
       expect(await isAgentWasmAvailable()).toBe(true);

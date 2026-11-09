@@ -4,46 +4,56 @@
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
+// vitest.config.ts sets mockReset: true, which wipes .mockReturnValue() and
+// .mockResolvedValue() before every test but restores an implementation
+// passed to vi.fn(impl). These helpers bake the value into the
+// implementation so module-level mocks survive the reset. As with
+// mockReturnValue, the value is evaluated once, so identity is preserved.
+const { returns, resolves } = vi.hoisted(() => ({
+  returns: <T>(value: T) => vi.fn(() => value),
+  resolves: <T>(value: T) => vi.fn(async () => value),
+}));
+
 // Mock the integration module
 const mockRouter = {
-  addPattern: vi.fn().mockReturnValue(true),
-  route: vi.fn().mockReturnValue([{ name: 'test', score: 0.9 }]),
+  addPattern: returns(true),
+  route: returns([{ name: 'test', score: 0.9 }]),
   clear: vi.fn(),
-  patternCount: vi.fn().mockReturnValue(1),
-  toJson: vi.fn().mockReturnValue('{}'),
+  patternCount: returns(1),
+  toJson: returns('{}'),
 };
 
 const mockSona = {
   adapt: vi.fn(),
   recordPattern: vi.fn(),
-  suggestAction: vi.fn().mockReturnValue('optimize'),
-  stats: vi.fn().mockReturnValue('{"adaptations":1}'),
+  suggestAction: returns('optimize'),
+  stats: returns('{"adaptations":1}'),
   reset: vi.fn(),
-  toJson: vi.fn().mockReturnValue('{}'),
+  toJson: returns('{}'),
 };
 
 const mockLora = {
-  apply: vi.fn().mockReturnValue(new Float32Array(32)),
+  apply: returns(new Float32Array(32)),
   adapt: vi.fn(),
   applyUpdates: vi.fn(),
-  stats: vi.fn().mockReturnValue('{"rank":2}'),
+  stats: returns('{"rank":2}'),
   reset: vi.fn(),
-  toJson: vi.fn().mockReturnValue('{}'),
-  pendingUpdates: vi.fn().mockReturnValue(0),
+  toJson: returns('{}'),
+  pendingUpdates: returns(0),
 };
 
 vi.mock('../src/ruvector/ruvllm-wasm.js', () => ({
-  isRuvllmWasmAvailable: vi.fn().mockResolvedValue(true),
-  initRuvllmWasm: vi.fn().mockResolvedValue(undefined),
-  getRuvllmStatus: vi.fn().mockResolvedValue({ available: true, initialized: true, version: '2.0.1' }),
-  createHnswRouter: vi.fn().mockResolvedValue(mockRouter),
-  createSonaInstant: vi.fn().mockResolvedValue(mockSona),
-  createMicroLora: vi.fn().mockResolvedValue(mockLora),
-  formatChat: vi.fn().mockResolvedValue('<|begin|>system\nHello<|end|>'),
-  createGenerateConfig: vi.fn().mockResolvedValue('{"maxTokens":100}'),
-  createKvCache: vi.fn().mockResolvedValue({ append: vi.fn(), clear: vi.fn(), stats: vi.fn(), tokenCount: vi.fn() }),
-  createBufferPool: vi.fn().mockResolvedValue({ prewarm: vi.fn(), stats: vi.fn(), hitRate: vi.fn(), clear: vi.fn() }),
-  createInferenceArena: vi.fn().mockResolvedValue({ reset: vi.fn(), used: vi.fn(), capacity: vi.fn(), remaining: vi.fn() }),
+  isRuvllmWasmAvailable: resolves(true),
+  initRuvllmWasm: resolves(undefined),
+  getRuvllmStatus: resolves({ available: true, initialized: true, version: '2.0.1' }),
+  createHnswRouter: resolves(mockRouter),
+  createSonaInstant: resolves(mockSona),
+  createMicroLora: resolves(mockLora),
+  formatChat: resolves('<|begin|>system\nHello<|end|>'),
+  createGenerateConfig: resolves('{"maxTokens":100}'),
+  createKvCache: resolves({ append: vi.fn(), clear: vi.fn(), stats: vi.fn(), tokenCount: vi.fn() }),
+  createBufferPool: resolves({ prewarm: vi.fn(), stats: vi.fn(), hitRate: vi.fn(), clear: vi.fn() }),
+  createInferenceArena: resolves({ reset: vi.fn(), used: vi.fn(), capacity: vi.fn(), remaining: vi.fn() }),
   HNSW_MAX_SAFE_PATTERNS: 11,
 }));
 
@@ -55,12 +65,12 @@ function findTool(name: string) {
   return tool;
 }
 
-// Same WASM-init issue as ruvllm-wasm.test.ts — mocks intercept the
-// integration layer but the real @ruvector/ruvllm-wasm package still
-// loads transitively and crashes in CI without prebuilds.
-const __SKIP_WASM_TESTS = process.env.CI === 'true';
-
-describe.skipIf(__SKIP_WASM_TESTS)('ruvllm-wasm MCP tools', () => {
+// This suite used to be skipped in CI on the theory that the real @ruvector/ruvllm-wasm
+// package still loaded and crashed without a built WASM binary. It does
+// not: every test here passes with @ruvector/ruvllm-wasm removed from node_modules.
+// The failures came from mockReset wiping .mockReturnValue(); see the
+// returns/resolves helpers at the top of this file.
+describe('ruvllm-wasm MCP tools', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });

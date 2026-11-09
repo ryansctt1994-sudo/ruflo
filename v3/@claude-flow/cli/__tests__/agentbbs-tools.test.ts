@@ -24,7 +24,12 @@ function findTool(name: string) {
 
 // Detect agentbbs availability at module scope so it.skipIf evaluates correctly.
 let havePkg = false;
-try { await import('agentbbs'); havePkg = true; } catch { havePkg = false; }
+// Indirect specifier (as in src/mcp-tools/agentbbs-tools.ts): a literal
+// import('agentbbs') is resolved by vite at transform time, so a missing or
+// non-importable package (0.1.0 ships only a bin) failed the whole file
+// instead of letting this probe set havePkg = false.
+const AGENTBBS_PKG = 'agentbbs';
+try { await import(/* @vite-ignore */ AGENTBBS_PKG); havePkg = true; } catch { havePkg = false; }
 
 describe('agentbbs MCP tools — structural contract', () => {
   it('exposes exactly 4 tools (register / publish / watch / human_join)', () => {

@@ -1634,6 +1634,14 @@ const initMemoryCommand: Command = {
         }
 
         output.writeln();
+
+        // A database that fails verification is not usable. Fail here instead
+        // of printing next steps, syncing it into .claude/, and reaching the
+        // delayed process.exit(0) below, which only the success path schedules.
+        if (!verification.success) {
+          output.printError('Memory database failed verification (see results above).');
+          return { success: false, exitCode: 1, data: result };
+        }
       }
 
       // Show next steps

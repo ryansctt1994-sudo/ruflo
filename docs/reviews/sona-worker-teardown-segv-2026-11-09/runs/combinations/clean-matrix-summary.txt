@@ -1,0 +1,8 @@
+HEAD=ffc209b concurrent vitest: 0
+hooks-pair                 rc=0    324s  Tests  78 passed (78)  segv=0 coverage-collision=0
+all-three                  rc=139    3s    segv=1 coverage-collision=0
+all-three-shuffle-1        rc=139    3s    segv=1 coverage-collision=0
+all-three-shuffle-2        rc=139    3s    segv=1 coverage-collision=0
+0
+
+[exited with code 0]

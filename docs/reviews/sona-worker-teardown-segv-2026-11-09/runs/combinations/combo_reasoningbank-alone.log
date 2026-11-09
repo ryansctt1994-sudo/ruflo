@@ -1,0 +1,169 @@
+ DEPRECATED  `test.poolOptions` was removed in Vitest 4. All previous `poolOptions` are now top-level options. Please, refer to the migration guide: https://vitest.dev/guide/migration#pool-rework
+Loaded  vitest@4.1.8  and  @vitest/coverage-v8@4.1.9 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+ RUN  v4.1.8 /home/user/ruflo/v3
+      Coverage enabled with v8
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should initialize in in-memory mode when dependencies are not available
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > initialization > should only initialize once
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store a new pattern
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should update existing pattern if duplicate detected
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store multiple different patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > storePattern > should store patterns with metadata
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should return patterns sorted by similarity
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should limit results to k
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should accept Float32Array as query
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > searchPatterns > should update metrics on search
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should generate guidance with domain detection
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should detect security domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should detect testing domain
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > generateGuidance > should include agent suggestion
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should route security tasks to security-architect
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should route testing tasks to test-architect
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should route performance tasks to performance-engineer
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should provide alternatives
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > routeTask > should default to coder for general tasks
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > recordOutcome > should update pattern quality on success
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > recordOutcome > should update pattern quality on failure
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > recordOutcome > should handle non-existent pattern gracefully
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > consolidate > should prune old low-quality patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > consolidate > should return consolidation stats
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > exportPatterns / importPatterns > should export all patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > exportPatterns / importPatterns > should import patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > exportPatterns / importPatterns > should not import duplicate patterns
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > getStats > should return accurate statistics
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > events > should emit pattern:stored event
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > events > should emit outcome:recorded event
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+stdout | @claude-flow/hooks/src/__tests__/reasoningbank.test.ts > ReasoningBank > events > should emit consolidated event
+[ReasoningBank] Initialized with AgentDB + HNSW (M=16, efConstruction=200)
+
+ ✓ @claude-flow/hooks/src/__tests__/reasoningbank.test.ts (31 tests) 299115ms
+       ✓ should store a new pattern  5686ms
+       ✓ should update existing pattern if duplicate detected  5898ms
+       ✓ should store multiple different patterns  17747ms
+       ✓ should store patterns with metadata  11783ms
+       ✓ should return patterns sorted by similarity  23679ms
+       ✓ should limit results to k  23339ms
+       ✓ should accept Float32Array as query  17157ms
+       ✓ should update metrics on search  28371ms
+       ✓ should generate guidance with domain detection  16625ms
+       ✓ should detect security domain  17758ms
+       ✓ should detect testing domain  18434ms
+       ✓ should include agent suggestion  18681ms
+       ✓ should route security tasks to security-architect  6532ms
+       ✓ should route testing tasks to test-architect  8090ms
+       ✓ should route performance tasks to performance-engineer  6103ms
+       ✓ should provide alternatives  6080ms
+       ✓ should default to coder for general tasks  7904ms
+       ✓ should update pattern quality on success  5849ms
+       ✓ should update pattern quality on failure  5696ms
+       ✓ should prune old low-quality patterns  5656ms
+       ✓ should export all patterns  12001ms
+       ✓ should return accurate statistics  17629ms
+       ✓ should emit pattern:stored event  6066ms
+       ✓ should emit outcome:recorded event  6049ms
+
+ Test Files  1 passed (1)
+      Tests  31 passed (31)
+   Start at  05:35:53
+   Duration  299.65s (transform 338ms, setup 58ms, import 93ms, tests 299.11s, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |       0 |        0 |       0 |       0 |                   
+ ...fecycle/domain |       0 |        0 |       0 |       0 |                   
+  Agent.ts         |       0 |        0 |       0 |       0 | 29-182            
+ ...on/application |       0 |        0 |       0 |       0 |                   
+  ...oordinator.ts |       0 |        0 |       0 |       0 | 44-475            
+ ...astructure/mcp |       0 |        0 |       0 |       0 |                   
+  MCPServer.ts     |       0 |        0 |       0 |       0 | 20-111            
+ ...ture/mcp/tools |       0 |        0 |       0 |       0 |                   
+  AgentTools.ts    |       0 |        0 |       0 |       0 | 20-134            
+  ConfigTools.ts   |       0 |        0 |       0 |       0 | 40-189            
+  MemoryTools.ts   |       0 |        0 |       0 |       0 | 20-152            
+ ...ucture/plugins |       0 |        0 |       0 |       0 |                   
+  ...nsionPoint.ts |       0 |      100 |     100 |       0 | 16                
+  Plugin.ts        |       0 |      100 |       0 |       0 | 49-97             
+  PluginManager.ts |       0 |        0 |       0 |       0 | 27-272            
+ memory/domain     |       0 |        0 |       0 |       0 |                   
+  Memory.ts        |       0 |        0 |       0 |       0 | 32-146            
+ ...infrastructure |       0 |        0 |       0 |       0 |                   
+  ...tDBBackend.ts |       0 |        0 |       0 |       0 | 23-202            
+  HybridBackend.ts |       0 |        0 |       0 |       0 | 20-166            
+  SQLiteBackend.ts |       0 |        0 |       0 |       0 | 18-153            
+ ...on/application |       0 |        0 |       0 |       0 |                   
+  ...flowEngine.ts |       0 |        0 |       0 |       0 | 49-480            
+ ...ecution/domain |       0 |        0 |       0 |       0 |                   
+  Task.ts          |       0 |        0 |       0 |       0 | 32-199            
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 0% ( 0/767 )
+Branches     : 0% ( 0/431 )
+Functions    : 0% ( 0/218 )
+Lines        : 0% ( 0/719 )
+================================================================================

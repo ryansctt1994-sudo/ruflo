@@ -1,0 +1,21 @@
+set pagination off
+set print thread-events off
+set breakpoint pending on
+handle SIGPIPE nostop noprint pass
+handle SIGUSR1 nostop noprint pass
+handle SIGUSR2 nostop noprint pass
+handle SIGSEGV stop print nopass
+break dlclose
+commands
+silent
+echo \n--- DLCLOSE ---\n
+info sharedlibrary
+bt 8
+continue
+end
+run
+echo \n=== FAULT ===\n
+p $pc
+p $_siginfo._sifields._sigfault.si_addr
+info symbol $pc
+quit

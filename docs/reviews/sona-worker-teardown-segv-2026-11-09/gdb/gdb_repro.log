@@ -1,0 +1,45 @@
+Error processing line 1 of /usr/lib/python3/dist-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "<frozen site>", line 201, in addpackage
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+Breakpoint 1 at 0xe38490
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff4ffa6c0 (LWP 3395)]
+
+--- DLCLOSE ---
+From                To                  Syms Read   Shared Object Library
+0x00007ffff7fc6000  0x00007ffff7ff0195  Yes         /lib64/ld-linux-x86-64.so.2
+0x00007ffff7fac040  0x00007ffff7fac105  Yes         /lib/x86_64-linux-gnu/libdl.so.2
+0x00007ffff7ca55c0  0x00007ffff7de4ce2  Yes (*)     /lib/x86_64-linux-gnu/libstdc++.so.6
+0x00007ffff7ed2420  0x00007ffff7f503a6  Yes         /lib/x86_64-linux-gnu/libm.so.6
+0x00007ffff7e98780  0x00007ffff7ebb745  Yes (*)     /lib/x86_64-linux-gnu/libgcc_s.so.1
+0x00007ffff7e90040  0x00007ffff7e90105  Yes         /lib/x86_64-linux-gnu/libpthread.so.0
+0x00007ffff7828800  0x00007ffff79b0039  Yes         /lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff7adff60  0x00007ffff7b48858  Yes (*)     /home/user/ruflo/v3/node_modules/.pnpm/@ruvector+sona@0.1.7/node_modules/@ruvector/sona/index.linux-x64-gnu.node
+(*): Shared library is missing debugging information.
+#0  __dlclose (handle=0x7fffc8079e60) at ./dlfcn/dlclose.c:25
+#1  0x0000000000f6f20c in node::binding::DLib::Close() ()
+#2  0x0000000000f29cea in node::Environment::~Environment() ()
+#3  0x0000000000f2b232 in node::Environment::~Environment() ()
+#4  0x0000000000eb10b9 in node::FreeEnvironment(node::Environment*) ()
+#5  0x00000000010fd5ac in node::worker::Worker::Run() ()
+#6  0x00000000010fd699 in node::worker::Worker::StartThread(v8::FunctionCallbackInfo<v8::Value> const&)::{lambda(void*)#1}::_FUN(void*) ()
+#7  0x00007ffff789cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+
+Thread 8 "node" received signal SIGSEGV, Segmentation fault.
+0x00007ffff7b2e450 in ?? ()
+
+=== FAULT ===
+$1 = (void (*)()) 0x7ffff7b2e450
+$2 = (void *) 0x7ffff7b2e450
+No symbol matches $pc.
+A debugging session is active.
+
+	Inferior 1 [process 3386] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
