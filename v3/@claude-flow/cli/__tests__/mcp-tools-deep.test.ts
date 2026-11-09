@@ -18,31 +18,51 @@ import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 // ============================================================================
 
 // Mock fs to prevent actual file I/O during tests
-vi.mock('node:fs', () => {
-  const memStore = new Map<string, string>();
-  return {
-    existsSync: vi.fn((p: string) => memStore.has(p)),
-    readFileSync: vi.fn((p: string) => memStore.get(p) || '{}'),
-    writeFileSync: vi.fn((p: string, d: string) => memStore.set(p, d)),
-    mkdirSync: vi.fn(),
-    readdirSync: vi.fn(() => []),
-    unlinkSync: vi.fn(),
-    statSync: vi.fn(() => ({ size: 100, isFile: () => true, isDirectory: () => false })),
-  };
-});
+// In-memory fs mock. Includes the primitives fs-secure.ts writeFileAtomic
+// uses (open/write/fsync/close/rename/chmod), so atomic writes land in the
+// store under the target path instead of throwing "No openSync export".
+const { makeFsMock } = vi.hoisted(() => ({
+  makeFsMock: () => {
+    const memStore = new Map<string, string>();
+    const fds = new Map<number, { path: string; chunks: string[] }>();
+    let nextFd = 100;
+    return {
+      existsSync: vi.fn((p: string) => memStore.has(p)),
+      readFileSync: vi.fn((p: string) => memStore.get(p) || '{}'),
+      writeFileSync: vi.fn((p: string, d: string) => memStore.set(p, String(d))),
+      mkdirSync: vi.fn(),
+      readdirSync: vi.fn(() => []),
+      unlinkSync: vi.fn((p: string) => memStore.delete(p)),
+      statSync: vi.fn(() => ({ size: 100, isFile: () => true, isDirectory: () => false })),
+      openSync: vi.fn((p: string) => {
+        const fd = nextFd++;
+        fds.set(fd, { path: p, chunks: [] });
+        return fd;
+      }),
+      writeSync: vi.fn((fd: number, data: Buffer | string) => {
+        fds.get(fd)?.chunks.push(data.toString());
+        return data.length;
+      }),
+      fsyncSync: vi.fn(),
+      closeSync: vi.fn((fd: number) => {
+        const f = fds.get(fd);
+        if (f && f.chunks.length) memStore.set(f.path, f.chunks.join(''));
+        fds.delete(fd);
+      }),
+      renameSync: vi.fn((from: string, to: string) => {
+        if (memStore.has(from)) {
+          memStore.set(to, memStore.get(from)!);
+          memStore.delete(from);
+        }
+      }),
+      chmodSync: vi.fn(),
+    };
+  },
+}));
 
-vi.mock('fs', () => {
-  const memStore = new Map<string, string>();
-  return {
-    existsSync: vi.fn((p: string) => memStore.has(p)),
-    readFileSync: vi.fn((p: string) => memStore.get(p) || '{}'),
-    writeFileSync: vi.fn((p: string, d: string) => memStore.set(p, d)),
-    mkdirSync: vi.fn(),
-    readdirSync: vi.fn(() => []),
-    unlinkSync: vi.fn(),
-    statSync: vi.fn(() => ({ size: 100, isFile: () => true, isDirectory: () => false })),
-  };
-});
+vi.mock('node:fs', () => makeFsMock());
+
+vi.mock('fs', () => makeFsMock());
 
 // Mock child_process for browser/security tools
 vi.mock('child_process', () => ({

@@ -44,8 +44,11 @@ async function loadAgentbbs(): Promise<any | null> {
     _agentbbsMod = await import(PACKAGE_NAME);
     return _agentbbsMod;
   } catch (err: any) {
+    // Node reports a missing/non-importable package as ERR_MODULE_NOT_FOUND;
+    // vite-based loaders (vitest, vite-node) report it as "Failed to resolve
+    // entry for package". Both mean "not available" → degrade, don't throw.
     if (err && (err.code === 'ERR_MODULE_NOT_FOUND' || err.code === 'MODULE_NOT_FOUND' ||
-                /Cannot find (module|package)/i.test(String(err?.message)))) {
+                /Cannot find (module|package)|Failed to resolve entry for package/i.test(String(err?.message)))) {
       _agentbbsMod = false;
       return null;
     }

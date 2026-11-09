@@ -6,6 +6,16 @@
 
 import { describe, it, expect, vi } from 'vitest';
 
+// vitest.config.ts sets mockReset: true, which wipes .mockReturnValue() and
+// .mockResolvedValue() before every test but restores an implementation
+// passed to vi.fn(impl). These helpers bake the value into the
+// implementation so module-level mocks survive the reset. As with
+// mockReturnValue, the value is evaluated once, so identity is preserved.
+const { returns, resolves } = vi.hoisted(() => ({
+  returns: <T>(value: T) => vi.fn(() => value),
+  resolves: <T>(value: T) => vi.fn(async () => value),
+}));
+
 // ── Mock the agent-wasm module ───────────────────────────────
 
 const mockAgentInfo = {
@@ -20,38 +30,38 @@ const mockAgentInfo = {
 };
 
 vi.mock('../src/ruvector/agent-wasm.js', () => ({
-  isAgentWasmAvailable: vi.fn().mockResolvedValue(true),
-  initAgentWasm: vi.fn().mockResolvedValue(undefined),
-  createWasmAgent: vi.fn().mockResolvedValue({ ...mockAgentInfo }),
-  promptWasmAgent: vi.fn().mockResolvedValue('Agent response'),
-  executeWasmTool: vi.fn().mockResolvedValue({ success: true, output: 'ok' }),
-  getWasmAgent: vi.fn().mockReturnValue({ ...mockAgentInfo }),
-  listWasmAgents: vi.fn().mockReturnValue([{ ...mockAgentInfo }]),
-  terminateWasmAgent: vi.fn().mockReturnValue(true),
-  resetWasmAgent: vi.fn().mockReturnValue(true),
-  getWasmAgentState: vi.fn().mockReturnValue({ messages: [], turn_count: 0 }),
-  getWasmAgentTools: vi.fn().mockReturnValue(['read_file', 'write_file']),
-  getWasmAgentTodos: vi.fn().mockReturnValue([]),
-  exportWasmState: vi.fn().mockReturnValue('{"state":"exported"}'),
-  createWasmMcpServer: vi.fn().mockResolvedValue(vi.fn().mockResolvedValue('{}')),
-  listGalleryTemplates: vi.fn().mockResolvedValue([{ id: 'coder', name: 'Coder Agent' }]),
-  getGalleryCount: vi.fn().mockResolvedValue(6),
-  getGalleryCategories: vi.fn().mockResolvedValue({ development: 2 }),
-  searchGalleryTemplates: vi.fn().mockResolvedValue([{ id: 'coder', name: 'Coder Agent', relevance: 0.7 }]),
-  getGalleryTemplate: vi.fn().mockResolvedValue({ id: 'coder', prompts: [], tools: [], skills: [] }),
-  createAgentFromTemplate: vi.fn().mockResolvedValue({ ...mockAgentInfo, id: 'wasm-agent-2-tpl' }),
-  buildRvfContainer: vi.fn().mockResolvedValue(new Uint8Array([0x52, 0x56, 0x46, 0x01])),
-  buildRvfFromTemplate: vi.fn().mockResolvedValue(new Uint8Array([0x52, 0x56, 0x46, 0x01])),
+  isAgentWasmAvailable: resolves(true),
+  initAgentWasm: resolves(undefined),
+  createWasmAgent: resolves({ ...mockAgentInfo }),
+  promptWasmAgent: resolves('Agent response'),
+  executeWasmTool: resolves({ success: true, output: 'ok' }),
+  getWasmAgent: returns({ ...mockAgentInfo }),
+  listWasmAgents: returns([{ ...mockAgentInfo }]),
+  terminateWasmAgent: returns(true),
+  resetWasmAgent: returns(true),
+  getWasmAgentState: returns({ messages: [], turn_count: 0 }),
+  getWasmAgentTools: returns(['read_file', 'write_file']),
+  getWasmAgentTodos: returns([]),
+  exportWasmState: returns('{"state":"exported"}'),
+  createWasmMcpServer: resolves(resolves('{}')),
+  listGalleryTemplates: resolves([{ id: 'coder', name: 'Coder Agent' }]),
+  getGalleryCount: resolves(6),
+  getGalleryCategories: resolves({ development: 2 }),
+  searchGalleryTemplates: resolves([{ id: 'coder', name: 'Coder Agent', relevance: 0.7 }]),
+  getGalleryTemplate: resolves({ id: 'coder', prompts: [], tools: [], skills: [] }),
+  createAgentFromTemplate: resolves({ ...mockAgentInfo, id: 'wasm-agent-2-tpl' }),
+  buildRvfContainer: resolves(new Uint8Array([0x52, 0x56, 0x46, 0x01])),
+  buildRvfFromTemplate: resolves(new Uint8Array([0x52, 0x56, 0x46, 0x01])),
   // ADR-129 P3 gallery CRUD
-  galleryLoadRvf: vi.fn().mockResolvedValue(new Uint8Array([0x52, 0x56, 0x46, 0x01])),
-  galleryConfigure: vi.fn().mockResolvedValue(undefined),
-  galleryListByCategory: vi.fn().mockResolvedValue([{ id: 'coder', name: 'Coder Agent' }]),
-  galleryAddCustom: vi.fn().mockResolvedValue(undefined),
-  galleryRemoveCustom: vi.fn().mockResolvedValue(undefined),
-  galleryImportCustom: vi.fn().mockResolvedValue(1),
-  galleryExportCustom: vi.fn().mockResolvedValue([{ id: 'custom-1' }]),
-  galleryGetActive: vi.fn().mockResolvedValue('coder'),
-  galleryGetConfig: vi.fn().mockResolvedValue({ maxTurns: 50 }),
+  galleryLoadRvf: resolves(new Uint8Array([0x52, 0x56, 0x46, 0x01])),
+  galleryConfigure: resolves(undefined),
+  galleryListByCategory: resolves([{ id: 'coder', name: 'Coder Agent' }]),
+  galleryAddCustom: resolves(undefined),
+  galleryRemoveCustom: resolves(undefined),
+  galleryImportCustom: resolves(1),
+  galleryExportCustom: resolves([{ id: 'custom-1' }]),
+  galleryGetActive: resolves('coder'),
+  galleryGetConfig: resolves({ maxTurns: 50 }),
 }));
 
 import { wasmAgentTools } from '../src/mcp-tools/wasm-agent-tools.js';
@@ -74,12 +84,12 @@ function parseResult(result: { content: Array<{ type: string; text: string }> })
 
 // ── Tests ────────────────────────────────────────────────────
 
-// Same WASM-init issue as agent-wasm.test.ts — mocks intercept the
-// agent-wasm module but the real @ruvector/rvagent-wasm package still
-// loads transitively and crashes in CI without prebuilds.
-const __SKIP_WASM_TESTS = process.env.CI === 'true';
-
-describe.skipIf(__SKIP_WASM_TESTS)('wasm-agent-tools MCP', () => {
+// This suite used to be skipped in CI on the theory that the real @ruvector/rvagent-wasm
+// package still loaded and crashed without a built WASM binary. It does
+// not: every test here passes with @ruvector/rvagent-wasm removed from node_modules.
+// The failures came from mockReset wiping .mockReturnValue(); see the
+// returns/resolves helpers at the top of this file.
+describe('wasm-agent-tools MCP', () => {
   it('exports 27 tools (10 original + 17 new ADR-129 P2/P3/P4)', () => {
     expect(wasmAgentTools).toHaveLength(27);
   });

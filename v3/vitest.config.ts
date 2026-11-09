@@ -27,11 +27,18 @@ export default defineConfig({
       'mcp/__tests__/**/*.spec.ts',
     ],
 
-    // Exclude patterns
+    // Exclude patterns. These replace vitest's defaults, so they must be
+    // recursive globs: a bare 'node_modules' only matches the top-level
+    // folder, and the '@claude-flow/**' include above then walks into pnpm
+    // workspace symlinks (e.g. @claude-flow/codex/node_modules/@claude-flow/cli)
+    // and collects every linked package's tests again (564 of 815 files).
     exclude: [
-      'node_modules',
-      'dist',
-      '.git',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/.git/**',
+      // node:test suites, not vitest ("No test suite found" here). Run with:
+      //   npx tsx --test __tests__/appliance/*.test.ts
+      '__tests__/appliance/**',
     ],
 
     // Coverage configuration - London School targets

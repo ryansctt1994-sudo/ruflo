@@ -4,14 +4,24 @@
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
+// vitest.config.ts sets mockReset: true, which wipes .mockReturnValue() and
+// .mockResolvedValue() before every test but restores an implementation
+// passed to vi.fn(impl). These helpers bake the value into the
+// implementation so module-level mocks survive the reset. As with
+// mockReturnValue, the value is evaluated once, so identity is preserved.
+const { returns, resolves } = vi.hoisted(() => ({
+  returns: <T>(value: T) => vi.fn(() => value),
+  resolves: <T>(value: T) => vi.fn(async () => value),
+}));
+
 // ── Mock WASM module ─────────────────────────────────────────
 
 const mockHnswRouter = {
-  addPattern: vi.fn().mockReturnValue(true),
-  route: vi.fn().mockReturnValue([{ name: 'test', score: 0.95 }]),
+  addPattern: returns(true),
+  route: returns([{ name: 'test', score: 0.95 }]),
   setEfSearch: vi.fn(),
   clear: vi.fn(),
-  toJson: vi.fn().mockReturnValue('{}'),
+  toJson: returns('{}'),
   dimensions: 64,
 };
 
@@ -27,9 +37,9 @@ const mockSonaConfig = {
 const mockSonaInstant = {
   instantAdapt: vi.fn(),
   recordPattern: vi.fn(),
-  suggestAction: vi.fn().mockReturnValue('optimize'),
-  stats: vi.fn().mockReturnValue({ adaptations: 1 }),
-  toJson: vi.fn().mockReturnValue('{"adaptations":1}'),
+  suggestAction: returns('optimize'),
+  stats: returns({ adaptations: 1 }),
+  toJson: returns('{"adaptations":1}'),
   reset: vi.fn(),
 };
 
@@ -41,14 +51,14 @@ const mockLoraConfig = {
 };
 
 const mockLora = {
-  apply: vi.fn().mockReturnValue(new Float32Array(32)),
+  apply: returns(new Float32Array(32)),
   adapt: vi.fn(),
   applyUpdates: vi.fn(),
-  stats: vi.fn().mockReturnValue({ rank: 2 }),
+  stats: returns({ rank: 2 }),
   reset: vi.fn(),
-  toJson: vi.fn().mockReturnValue('{"rank":2}'),
-  getConfig: vi.fn().mockReturnValue(mockLoraConfig),
-  pendingUpdates: vi.fn().mockReturnValue(0),
+  toJson: returns('{"rank":2}'),
+  getConfig: returns(mockLoraConfig),
+  pendingUpdates: returns(0),
 };
 
 const mockAdaptFeedback = {
@@ -60,7 +70,7 @@ const mockAdaptFeedback = {
 const mockKvCacheConfig = { tailLength: 4, maxTokens: 2048, numKvHeads: 8, headDim: 64 };
 const mockKvCache = {
   append: vi.fn(),
-  stats: vi.fn().mockReturnValue({}),
+  stats: returns({}),
   clear: vi.fn(),
   tokenCount: 0,
 };
@@ -73,12 +83,12 @@ const mockGenerateConfig = {
   repetitionPenalty: 1.1,
   addStopSequence: vi.fn(),
   clearStopSequences: vi.fn(),
-  toJson: vi.fn().mockReturnValue('{"maxTokens":100}'),
+  toJson: returns('{"maxTokens":100}'),
 };
 
 const mockBufferPool = {
   prewarmAll: vi.fn(),
-  statsJson: vi.fn().mockReturnValue('{"hitRate":0.95}'),
+  statsJson: returns('{"hitRate":0.95}'),
   hitRate: 0.95,
   clear: vi.fn(),
 };
@@ -91,17 +101,17 @@ const mockInferenceArena = {
 };
 
 const mockChatMessage = {
-  system: vi.fn().mockReturnValue({ role: 'system', content: 'test' }),
-  user: vi.fn().mockReturnValue({ role: 'user', content: 'test' }),
-  assistant: vi.fn().mockReturnValue({ role: 'assistant', content: 'test' }),
+  system: returns({ role: 'system', content: 'test' }),
+  user: returns({ role: 'user', content: 'test' }),
+  assistant: returns({ role: 'assistant', content: 'test' }),
 };
 
 const mockChatTemplate = {
-  format: vi.fn().mockReturnValue('<formatted>'),
+  format: returns('<formatted>'),
   name: 'llama3',
 };
 
-// Use class syntax for mocks that are invoked with `new` — vi.fn().mockImplementation(() => ...)
+// Use class syntax for mocks that are invoked with `new` — vi.fn(() => ...)
 // returns an arrow function which is NOT constructable and throws "is not a constructor".
 vi.mock('@ruvector/ruvllm-wasm', () => ({
   default: vi.fn(),
@@ -109,7 +119,7 @@ vi.mock('@ruvector/ruvllm-wasm', () => ({
   RuvLLMWasm: class {
     initialize = vi.fn();
     isInitialized = true;
-    getPoolStats = vi.fn().mockReturnValue('{}');
+    getPoolStats = returns('{}');
     reset = vi.fn();
   },
   HnswRouterWasm: class {
@@ -168,7 +178,7 @@ vi.mock('@ruvector/ruvllm-wasm', () => ({
   },
   KvCacheWasm: Object.assign(
     class { append = mockKvCache.append; stats = mockKvCache.stats; clear = mockKvCache.clear; tokenCount = 0; },
-    { withDefaults: vi.fn().mockReturnValue(mockKvCache) },
+    { withDefaults: returns(mockKvCache) },
   ),
   GenerateConfig: class {
     maxTokens = 100;
@@ -180,49 +190,43 @@ vi.mock('@ruvector/ruvllm-wasm', () => ({
     clearStopSequences = mockGenerateConfig.clearStopSequences;
     toJson = mockGenerateConfig.toJson;
   },
-  BufferPoolWasm: { withCapacity: vi.fn().mockReturnValue(mockBufferPool) },
+  BufferPoolWasm: { withCapacity: returns(mockBufferPool) },
   InferenceArenaWasm: Object.assign(
     class { reset = mockInferenceArena.reset; used = 1024; capacity = 8192; remaining = 7168; },
-    { forModel: vi.fn().mockReturnValue(mockInferenceArena) },
+    { forModel: returns(mockInferenceArena) },
   ),
   ChatMessageWasm: mockChatMessage,
   ChatTemplateWasm: {
-    llama3: vi.fn().mockReturnValue(mockChatTemplate),
-    mistral: vi.fn().mockReturnValue(mockChatTemplate),
-    chatml: vi.fn().mockReturnValue(mockChatTemplate),
-    phi: vi.fn().mockReturnValue(mockChatTemplate),
-    gemma: vi.fn().mockReturnValue(mockChatTemplate),
-    custom: vi.fn().mockReturnValue(mockChatTemplate),
-    detectFromModelId: vi.fn().mockReturnValue(mockChatTemplate),
+    llama3: returns(mockChatTemplate),
+    mistral: returns(mockChatTemplate),
+    chatml: returns(mockChatTemplate),
+    phi: returns(mockChatTemplate),
+    gemma: returns(mockChatTemplate),
+    custom: returns(mockChatTemplate),
+    detectFromModelId: returns(mockChatTemplate),
   },
-  getVersion: vi.fn().mockReturnValue('2.0.1'),
-  isReady: vi.fn().mockReturnValue(true),
+  getVersion: returns('2.0.1'),
+  isReady: returns(true),
 }));
 
 // Mock fs and module for Node.js init
 vi.mock('node:fs', () => ({
-  readFileSync: vi.fn().mockReturnValue(Buffer.from('fake wasm bytes')),
+  readFileSync: returns(Buffer.from('fake wasm bytes')),
 }));
 vi.mock('node:module', () => ({
-  createRequire: vi.fn().mockReturnValue({
-    resolve: vi.fn().mockReturnValue('/fake/path/ruvllm_wasm_bg.wasm'),
+  createRequire: returns({
+    resolve: returns('/fake/path/ruvllm_wasm_bg.wasm'),
   }),
 }));
 
 // ── Tests ────────────────────────────────────────────────────
 
-// The mocks above target node:module.createRequire and node:fs, but the
-// real `await import('@ruvector/ruvllm-wasm')` still resolves to the actual
-// package, which crashes during init when the WASM binary isn't built
-// (pnpm's `neverBuiltDependencies: ['sharp']`-style policy doesn't fetch
-// prebuilt natives in CI). The mocks intercept some paths but not the
-// initial module evaluation — once vi.mock can replace the package itself
-// cleanly, this skip can come off.
-//
-// Skip in CI; run locally where WASM is built.
-const __SKIP_WASM_TESTS = process.env.CI === 'true';
-
-describe.skipIf(__SKIP_WASM_TESTS)('ruvllm-wasm integration', () => {
+// This suite used to be skipped in CI on the theory that the real @ruvector/ruvllm-wasm
+// package still loaded and crashed without a built WASM binary. It does
+// not: every test here passes with @ruvector/ruvllm-wasm removed from node_modules.
+// The failures came from mockReset wiping .mockReturnValue(); see the
+// returns/resolves helpers at the top of this file.
+describe('ruvllm-wasm integration', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
