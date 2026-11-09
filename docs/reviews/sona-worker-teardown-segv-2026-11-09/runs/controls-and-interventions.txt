@@ -1,0 +1,17 @@
+# controls and interventions: 2026-11-09T05:53:35Z
+# node v22.23.4, ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39, Linux 6.18.44-fc-v310 x86_64
+# sona 0.1.7 binary sha256: 6402e1f9c15febfbaf04b3c1bd83e4b7ee15afce607553ef6c46a80a9e71f5e9
+# patched copy sha256:      8a4dbd06be32aeab4dab36c7f974643a891f374da6f301a21fbfc6e970202457 (DT_FLAGS_1 0x1 -> 0x9)
+# bytes differing unmodified vs patched: 1
+# columns: case | exit codes of 3 runs (139 = SIGSEGV)
+sona 0.1.7: require on main thread                             | 0 0 0
+sona 0.1.7: require in worker, worker exits                    | 139 139 139
+sona 0.1.5: require in worker, worker exits                    | 139 139 139
+@ruvector/router 0.1.30 in worker                              | 0 0 0
+@ruvector/attention 0.1.32 in worker                           | 0 0 0
+@ruvector/rvf-node 0.2.0 in worker                             | 0 0 0
+sona 0.1.7: construct SonaEngine in worker                     | 0 0 0
+intervention: unmodified copy in worker                        | 139 139 139
+intervention: +NODELETE (1 byte) in worker                     | 0 0 0
+intervention: unmodified, main-thread preload                  | 0 0 0
+# done

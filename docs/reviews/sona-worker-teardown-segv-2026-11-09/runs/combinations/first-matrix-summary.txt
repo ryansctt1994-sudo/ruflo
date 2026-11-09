@@ -1,0 +1,8 @@
+guidance-alone               rc=0    233s Tests  47 passed (47)
+reasoningbank-alone          rc=0    301s Tests  31 passed (31)
+ruvector-deep-alone          rc=139    2s 
+hooks-pair                   rc=1    275s 
+all-three                    rc=139    3s 
+0
+
+[exited with code 0]

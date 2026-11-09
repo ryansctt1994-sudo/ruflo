@@ -1,0 +1,19 @@
+set pagination off
+set print thread-events off
+handle SIGPIPE nostop noprint pass
+handle SIGUSR1 nostop noprint pass
+handle SIGUSR2 nostop noprint pass
+handle SIGSEGV stop print nopass
+run
+echo \n=== FAULT: info threads ===\n
+info threads
+echo \n=== FAULT: siginfo ===\n
+p $_siginfo.si_signo
+p $_siginfo._sifields._sigfault.si_addr
+echo \n=== FAULT: faulting thread bt full ===\n
+bt full 25
+echo \n=== FAULT: all threads bt ===\n
+thread apply all bt 14
+echo \n=== native .node libraries loaded ===\n
+info sharedlibrary
+quit

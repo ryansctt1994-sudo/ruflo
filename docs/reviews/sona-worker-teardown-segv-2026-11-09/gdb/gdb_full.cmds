@@ -1,0 +1,27 @@
+set pagination off
+set print thread-events off
+set breakpoint pending on
+handle SIGPIPE nostop noprint pass
+handle SIGUSR1 nostop noprint pass
+handle SIGUSR2 nostop noprint pass
+handle SIGSEGV nostop noprint pass
+catch signal SIGSEGV
+commands
+silent
+echo \n--- SIGSEGV ---\n
+p $pc
+info symbol $pc
+bt 3
+continue
+end
+break dlclose
+commands
+silent
+echo \n--- DLCLOSE ---\n
+info sharedlibrary sona
+continue
+end
+run
+echo \n=== PROCESS END ===\n
+info program
+quit

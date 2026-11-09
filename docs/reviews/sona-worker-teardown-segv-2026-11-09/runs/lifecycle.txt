@@ -1,0 +1,30 @@
+540 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/helper-signing.test.ts
+545 START /home/user/ruflo/v3/@claude-flow/hooks/src/__tests__/reasoningbank.test.ts
+562 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/helper-signing.test.ts failed
+617 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/agenticow-tools.test.ts
+686 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/agenticow-tools.test.ts failed
+807 START /home/user/ruflo/v3/@claude-flow/hooks/src/__tests__/guidance-provider.test.ts
+949 START /home/user/ruflo/v3/@claude-flow/performance/__tests__/benchmarks.test.ts
+32889 END   /home/user/ruflo/v3/@claude-flow/performance/__tests__/benchmarks.test.ts passed
+33294 START /home/user/ruflo/v3/@claude-flow/plugins/__tests__/ruvector-streaming.test.ts
+46542 END   /home/user/ruflo/v3/@claude-flow/plugins/__tests__/ruvector-streaming.test.ts passed
+46895 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/self-learning-2245.test.ts
+46919 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/self-learning-2245.test.ts failed
+47125 START /home/user/ruflo/v3/@claude-flow/performance/__tests__/attention.test.ts
+55057 END   /home/user/ruflo/v3/@claude-flow/performance/__tests__/attention.test.ts passed
+55468 START /home/user/ruflo/v3/@claude-flow/security/__tests__/password-hasher.test.ts
+62363 END   /home/user/ruflo/v3/@claude-flow/security/__tests__/password-hasher.test.ts passed
+62668 START /home/user/ruflo/v3/@claude-flow/swarm/__tests__/topology.test.ts
+68835 END   /home/user/ruflo/v3/@claude-flow/swarm/__tests__/topology.test.ts passed
+69091 START /home/user/ruflo/v3/@claude-flow/swarm/__tests__/consensus.test.ts
+74899 END   /home/user/ruflo/v3/@claude-flow/swarm/__tests__/consensus.test.ts passed
+75276 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/pretrain-from-github.test.ts
+76262 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/pretrain-from-github.test.ts passed
+76458 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/memory-search-recall-2558.test.ts
+81112 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/memory-search-recall-2558.test.ts passed
+81356 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/integration-docker.test.ts
+84575 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/integration-docker.test.ts passed
+84776 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/round-b-wiring-2245.test.ts
+84794 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/round-b-wiring-2245.test.ts failed
+85107 START /home/user/ruflo/v3/@claude-flow/cli/__tests__/memory-ruvector-deep.test.ts
+86403 END   /home/user/ruflo/v3/@claude-flow/cli/__tests__/memory-ruvector-deep.test.ts passed
