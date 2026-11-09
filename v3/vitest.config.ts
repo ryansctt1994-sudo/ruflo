@@ -9,6 +9,27 @@
 import { defineConfig } from 'vitest/config';
 import path from 'path';
 
+// Suites that call process.chdir(), which Node forbids in worker threads.
+// They must run in forked processes. __tests__/vitest-pool-config.test.ts
+// fails if a collected test file calls chdir without being listed here.
+export const INCLUDE = [
+  '__tests__/**/*.test.ts',
+  '__tests__/**/*.spec.ts',
+  '@claude-flow/**/__tests__/**/*.test.ts',
+  '@claude-flow/**/__tests__/**/*.spec.ts',
+  'mcp/__tests__/**/*.test.ts',
+  'mcp/__tests__/**/*.spec.ts',
+];
+
+export const CHDIR_SUITES = [
+  '@claude-flow/cli/__tests__/issue-2250-2251-regression.test.ts',
+  '@claude-flow/cli/__tests__/neural-status-training-backend-2549.test.ts',
+  '@claude-flow/cli/__tests__/round-b-wiring-2245.test.ts',
+  '@claude-flow/cli/__tests__/router-bandit.test.ts',
+  '@claude-flow/cli/__tests__/self-learning-2245.test.ts',
+  '@claude-flow/cli/__tests__/unified-stats-2245.test.ts',
+];
+
 export default defineConfig({
   test: {
     // Test environment
@@ -17,15 +38,10 @@ export default defineConfig({
     // Global test setup
     setupFiles: ['./__tests__/setup.ts'],
 
-    // Include patterns
-    include: [
-      '__tests__/**/*.test.ts',
-      '__tests__/**/*.spec.ts',
-      '@claude-flow/**/__tests__/**/*.test.ts',
-      '@claude-flow/**/__tests__/**/*.spec.ts',
-      'mcp/__tests__/**/*.test.ts',
-      'mcp/__tests__/**/*.spec.ts',
-    ],
+    // Include patterns live on the projects below, not here: with
+    // `extends: true` a project's `include` is concatenated with the root's,
+    // so a root `include` would make the chdir-forks project collect every
+    // file again.
 
     // Exclude patterns. These replace vitest's defaults, so they must be
     // recursive globs: a bare 'node_modules' only matches the top-level
@@ -102,20 +118,14 @@ export default defineConfig({
     // and the segfault happens only at process shutdown. CI handles
     // exit code 139 as success when results were reported (see test job).
     pool: 'threads',
-    poolOptions: {
-      threads: {
-        singleThread: false,
-        isolate: true,
-      },
-      forks: {
-        singleFork: false,
-        isolate: true,
-      },
-    },
-    // Per-file pool override: tests that need process.chdir() must run
-    // in a forked subprocess (Node's worker threads forbid chdir).
-    poolMatchGlobs: [
-      ['**/router-bandit.test.ts', 'forks'],
+    isolate: true,
+    // Vitest 4 removed `poolOptions` and `poolMatchGlobs`, so both were
+    // silently ignored here, and every process.chdir() suite ran in a worker
+    // thread, where chdir throws. Those suites now run in their own forks
+    // project; the rest keep the threads pool.
+    projects: [
+      { extends: true, test: { name: 'threads', include: INCLUDE, exclude: CHDIR_SUITES } },
+      { extends: true, test: { name: 'chdir-forks', include: CHDIR_SUITES, pool: 'forks' } },
     ],
 
     // Globals for easier testing
